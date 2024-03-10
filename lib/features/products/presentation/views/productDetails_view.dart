@@ -16,7 +16,9 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
     "https://firebasestorage.googleapis.com/v0/b/slash-d7546.appspot.com/o/images%2Fproduct-variants%2F1696611895096image_picker_5A25C10D-913A-4793-BBE6-E872B78ADCDF-7927-000000C70467A177.jpg?alt=media&token=c0ce5c2d-5b7a-471d-b621-6a0cd6cd114f",
     "https://firebasestorage.googleapis.com/v0/b/slash-d7546.appspot.com/o/images%2Fbrands%2F1695465676086image_picker_236F0924-0F0D-410D-9317-EC88FEC5E9B9-31877-0000033F4E46F568.png?alt=media&token=8116a469-133c-490b-a95b-14789204ea5e",
   ];
-  final CarouselController controller = CarouselController();
+  final CarouselController controllerBig = CarouselController();
+  final CarouselController controllerSmall = CarouselController();
+
   int index = 0;
 
   @override
@@ -33,19 +35,25 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
         slivers: [
           const SliverToBoxAdapter(child: SizedBox(height: 32)),
           SliverToBoxAdapter(
-            child: ImagesListView(
+            child: ImagesListViewBig(
               imagesUrls: imagURLs,
-              controller: controller,
+              controller: controllerBig,
             ),
           ),
           SliverToBoxAdapter(
             child: IconButton(
                 onPressed: () {
                   setState(() {
-                    controller.animateToPage(3);
+                    controllerBig.animateToPage(3);
                   });
                 },
                 icon: const Icon(Icons.abc)),
+          ),
+          SliverToBoxAdapter(
+            child: ImagesListViewSmall(
+              imagesUrls: imagURLs,
+              controller: controllerSmall,
+            ),
           )
         ],
       ),

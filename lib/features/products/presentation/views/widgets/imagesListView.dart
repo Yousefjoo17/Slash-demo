@@ -1,12 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-class ImagesListView extends StatelessWidget {
-  const ImagesListView(
-      {super.key,
-      required this.imagesUrls,
-      required this.controller,
-      });
+class ImagesListViewBig extends StatelessWidget {
+  const ImagesListViewBig({
+    super.key,
+    required this.imagesUrls,
+    required this.controller,
+  });
 
   final List<String> imagesUrls;
   final CarouselController controller;
@@ -29,8 +29,51 @@ class ImagesListView extends StatelessWidget {
           )
           .toList(),
       options: CarouselOptions(
-        autoPlay: true,
+        autoPlay: false,
         aspectRatio: 1.5,
+        enlargeCenterPage: true,
+        autoPlayCurve: Curves.easeInOutQuart,
+        onPageChanged: (index, reason) {
+          print("index: $index  reason: $reason");
+        },
+      ),
+      carouselController: controller,
+    );
+  }
+}
+
+/***********************************/
+
+class ImagesListViewSmall extends StatelessWidget {
+  const ImagesListViewSmall({
+    super.key,
+    required this.imagesUrls,
+    required this.controller,
+  });
+
+  final List<String> imagesUrls;
+  final CarouselController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return CarouselSlider(
+      items: imagesUrls
+          .map(
+            (item) => Center(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Image.network(
+                  item,
+                  fit: BoxFit.cover,
+                  width: 500,
+                ),
+              ),
+            ),
+          )
+          .toList(),
+      options: CarouselOptions(
+        autoPlay: false,
+        aspectRatio: 4,
         enlargeCenterPage: true,
         autoPlayCurve: Curves.easeInOutQuart,
         onPageChanged: (index, reason) {
