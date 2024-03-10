@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:slash/features/products/presentation/views/widgets/imagesListView.dart';
+import 'package:slash/features/products/presentation/views/widgets/ImagesListViewSmall.dart';
+import 'package:slash/features/products/presentation/views/widgets/imagesListViewBig.dart';
 
 class ProductDetailsView extends StatefulWidget {
   const ProductDetailsView({super.key});
@@ -17,9 +18,6 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
     "https://firebasestorage.googleapis.com/v0/b/slash-d7546.appspot.com/o/images%2Fbrands%2F1695465676086image_picker_236F0924-0F0D-410D-9317-EC88FEC5E9B9-31877-0000033F4E46F568.png?alt=media&token=8116a469-133c-490b-a95b-14789204ea5e",
   ];
   final CarouselController controllerBig = CarouselController();
-  final CarouselController controllerSmall = CarouselController();
-
-  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +45,22 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                     controllerBig.animateToPage(3);
                   });
                 },
-                icon: const Icon(Icons.abc)),
+                icon: const Icon(
+                  Icons.tab,
+                  size: 32,
+                )),
           ),
           SliverToBoxAdapter(
-            child: ImagesListViewSmall(
-              imagesUrls: imagURLs,
-              controller: controllerSmall,
+            child: Center(
+              child: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: 60,
+                child: Center(
+                  child: ImagesListViewSmall(
+                    imagesUrls: imagURLs,
+                  ),
+                ),
+              ),
             ),
           )
         ],
