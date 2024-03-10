@@ -4,5 +4,11 @@ import 'package:meta/meta.dart';
 part 'selecting_image_state.dart';
 
 class SelectingImageCubit extends Cubit<SelectingImageState> {
-  SelectingImageCubit() : super(SelectingImageInitial());
+  SelectingImageCubit(this.currIndex) : super(SelectingImageInitial());
+   int currIndex;
+  void changePic(int nextIndex) {
+    emit(SelectingImage(currIndex: nextIndex));
+    currIndex = nextIndex;
+    
+  }
 }

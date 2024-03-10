@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:slash/features/products/presentation/view_models/selecting_image_cubit/selecting_image_cubit.dart';
 import 'package:slash/features/products/presentation/views/widgets/ImagesListViewSmall.dart';
 import 'package:slash/features/products/presentation/views/widgets/imagesListViewBig.dart';
 
@@ -29,41 +31,37 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
           ),
         ),
       ),
-      body: CustomScrollView(
-        slivers: [
-          const SliverToBoxAdapter(child: SizedBox(height: 32)),
-          SliverToBoxAdapter(
-            child: ImagesListViewBig(
-              imagesUrls: imagURLs,
-              controller: controllerBig,
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    controllerBig.animateToPage(3);
-                  });
-                },
-                icon: const Icon(
-                  Icons.tab,
-                  size: 32,
-                )),
-          ),
-          SliverToBoxAdapter(
-            child: Center(
-              child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 60,
-                child: Center(
-                  child: ImagesListViewSmall(
-                    imagesUrls: imagURLs,
-                  ),
+      body: BlocBuilder<SelectingImageCubit, SelectingImageState>(
+        builder: (context, state) {
+          return CustomScrollView(
+            slivers: [
+              const SliverToBoxAdapter(child: SizedBox(height: 32)),
+              SliverToBoxAdapter(
+                child: ImagesListViewBig(
+                  imagesUrls: imagURLs,
+                  controller: controllerBig,
                 ),
               ),
-            ),
-          )
-        ],
+              const SliverToBoxAdapter(child: SizedBox(height: 30)),
+              SliverToBoxAdapter(
+                child: Row(
+                  children: [
+                    const Spacer(flex: 1),
+                    SizedBox(
+                      height: 60,
+                      width: MediaQuery.of(context).size.width / 1.3,
+                      child: ImagesListViewSmall(
+                        imagesUrls: imagURLs,
+                        controllerBig: controllerBig,
+                      ),
+                    ),
+                    const Spacer(flex: 1),
+                  ],
+                ),
+              )
+            ],
+          );
+        },
       ),
     );
   }
