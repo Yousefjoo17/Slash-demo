@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:slash/core/errors/failure.dart';
+import 'package:slash/features/Home/data/models/product_details_modal/product_details_modal.dart';
 import 'package:slash/features/Home/data/models/product_modal/product_modal.dart';
 import 'package:slash/core/utils/api_service.dart';
 import 'package:slash/features/Home/data/repos/Home_repo.dart';
@@ -14,7 +15,6 @@ class HomeRepoImpl implements HomeRepo {
     try {
       var data = await apiService.get();
       List<ProductModal> products = [];
-      print(data["data"][0]);
 
       for (var item in data["data"]) {
         products.add(ProductModal.fromJson(item));
@@ -30,18 +30,15 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   @override
-  Future<Either<Failure, ProductModal>> fetchProductDetails(
+  Future<Either<Failure, ProductDetailsModal>> fetchProductDetails(
       {required int id}) async {
     try {
-      var data = await apiService.get(id: id) as List;
+      var data = await apiService.get(id: id);
 
-      List<ProductModal> products = [];
+      ProductDetailsModal productDetailsModal =
+          ProductDetailsModal.fromJson(data["data"]);
 
-      for (var item in data) {
-        products.add(item.fromJson(item));
-      }
-
-      return right(products[0]);
+      return right(productDetailsModal);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioexception(e));
