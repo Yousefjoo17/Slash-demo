@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => AllProductsCubit(
             getIt.get<HomeRepoImpl>(),
-          )..featchAllProducts(),
+          )..fetchAllProd(),
         ),
       ],
       child: MaterialApp.router(

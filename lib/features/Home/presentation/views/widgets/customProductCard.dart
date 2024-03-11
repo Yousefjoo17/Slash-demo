@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:slash/features/Home/data/models/product_modal/product_modal.dart';
 import 'package:slash/core/utils/app_router.dart';
+import 'package:slash/features/Home/presentation/view_models/All_products_cubit/all_products_cubit.dart';
 
 class CustomProductCard extends StatelessWidget {
   const CustomProductCard({super.key, required this.product});
@@ -10,7 +12,9 @@ class CustomProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kProductDetailsView);
+        BlocProvider.of<AllProductsCubit>(context).currID = product.id!;
+        GoRouter.of(context)
+            .push(AppRouter.kProductDetailsView);
       },
       child: Stack(
         clipBehavior: Clip.none,

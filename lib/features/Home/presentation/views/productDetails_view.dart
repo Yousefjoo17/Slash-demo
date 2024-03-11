@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:slash/features/Home/presentation/view_models/cubit/product_details_cubit.dart';
 import 'package:slash/features/Home/presentation/view_models/selecting_image_cubit/selecting_image_cubit.dart';
 import 'package:slash/features/Home/presentation/views/widgets/Colors_ListView.dart';
 import 'package:slash/features/Home/presentation/views/widgets/ImagesListViewSmall.dart';
@@ -10,7 +11,6 @@ import 'package:slash/features/Home/presentation/views/widgets/imagesListViewBig
 
 class ProductDetailsView extends StatefulWidget {
   const ProductDetailsView({super.key});
-
   @override
   State<ProductDetailsView> createState() => _ProductDetailsViewState();
 }
@@ -22,8 +22,13 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
     "https://firebasestorage.googleapis.com/v0/b/slash-d7546.appspot.com/o/images%2Fproduct-variants%2F1696611895096image_picker_5A25C10D-913A-4793-BBE6-E872B78ADCDF-7927-000000C70467A177.jpg?alt=media&token=c0ce5c2d-5b7a-471d-b621-6a0cd6cd114f",
     "https://firebasestorage.googleapis.com/v0/b/slash-d7546.appspot.com/o/images%2Fbrands%2F1695465676086image_picker_236F0924-0F0D-410D-9317-EC88FEC5E9B9-31877-0000033F4E46F568.png?alt=media&token=8116a469-133c-490b-a95b-14789204ea5e",
   ];
-  final CarouselController controllerBig = CarouselController();
 
+  final CarouselController controllerBig = CarouselController();
+  @override
+  void initState() {
+    
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,103 +42,107 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
       ),
       body: BlocBuilder<SelectingImageCubit, SelectingImageState>(
         builder: (context, state) {
-          return Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: CustomScrollView(
-              slivers: [
-                const SliverToBoxAdapter(child: SizedBox(height: 32)),
-                SliverToBoxAdapter(
-                  child: ImagesListViewBig(
-                    imagesUrls: imagURLs,
-                    controller: controllerBig,
-                  ),
-                ),
-                const SliverToBoxAdapter(child: SizedBox(height: 30)),
-                SliverToBoxAdapter(
-                  child: Row(
-                    children: [
-                      const Spacer(flex: 1),
-                      SizedBox(
-                        height: 60,
-                        width: MediaQuery.of(context).size.width / 1.3,
-                        child: ImagesListViewSmall(
-                          imagesUrls: imagURLs,
-                          controllerBig: controllerBig,
-                        ),
+          return BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
+            builder: (context, state) {
+              return Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: CustomScrollView(
+                  slivers: [
+                    const SliverToBoxAdapter(child: SizedBox(height: 32)),
+                    SliverToBoxAdapter(
+                      child: ImagesListViewBig(
+                        imagesUrls: imagURLs,
+                        controller: controllerBig,
                       ),
-                      const Spacer(flex: 1),
-                    ],
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+                    ),
+                    const SliverToBoxAdapter(child: SizedBox(height: 30)),
+                    SliverToBoxAdapter(
+                      child: Row(
                         children: [
-                          const Column(
+                          const Spacer(flex: 1),
+                          SizedBox(
+                            height: 60,
+                            width: MediaQuery.of(context).size.width / 1.3,
+                            child: ImagesListViewSmall(
+                              imagesUrls: imagURLs,
+                              controllerBig: controllerBig,
+                            ),
+                          ),
+                          const Spacer(flex: 1),
+                        ],
+                      ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
                             children: [
-                              SizedBox(height: 32),
-                              Text(
-                                "Cargo pants",
-                                style: TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                              const Column(
+                                children: [
+                                  SizedBox(height: 32),
+                                  Text(
+                                    "Cargo pants",
+                                    style: TextStyle(
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(height: 12),
+                                  Text(
+                                    "EGP 550",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                  SizedBox(height: 48),
+                                  Text(
+                                    "Select Color",
+                                    style: TextStyle(
+                                      fontSize: 19,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              SizedBox(height: 12),
-                              Text(
-                                "EGP 550",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                ),
-                              ),
-                              SizedBox(height: 48),
-                              Text(
-                                "Select Color",
-                                style: TextStyle(
-                                  fontSize: 19,
-                                ),
+                              const Spacer(),
+                              Image.network(
+                                "https://firebasestorage.googleapis.com/v0/b/slash-d7546.appspot.com/o/images%2Fbrands%2F1695386914229FB_IMG_1693330052710.jpg?alt=media&token=501cb71f-ed98-4348-b2e8-41c63e272e32",
+                                width: 60,
+                                height: 60,
+                                fit: BoxFit.cover,
                               ),
                             ],
                           ),
-                          const Spacer(),
-                          Image.network(
-                            "https://firebasestorage.googleapis.com/v0/b/slash-d7546.appspot.com/o/images%2Fbrands%2F1695386914229FB_IMG_1693330052710.jpg?alt=media&token=501cb71f-ed98-4348-b2e8-41c63e272e32",
-                            width: 60,
-                            height: 60,
-                            fit: BoxFit.cover,
+                          const SizedBox(height: 16),
+                          const ColorListView(),
+                          const SizedBox(height: 32),
+                          const Text(
+                            "Select size",
+                            style: TextStyle(
+                              fontSize: 19,
+                            ),
                           ),
+                          const SizedBox(height: 16),
+                          const ItemsListView(),
+                          const SizedBox(height: 32),
+                          const Text(
+                            "Select material",
+                            style: TextStyle(
+                              fontSize: 19,
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                          const ItemsListView(),
+                          const SizedBox(height: 32),
+                          const ProductDescription(),
+                          const SizedBox(height: 32),
                         ],
                       ),
-                      const SizedBox(height: 16),
-                      const ColorListView(),
-                      const SizedBox(height: 32),
-                      const Text(
-                        "Select size",
-                        style: TextStyle(
-                          fontSize: 19,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      const ItemsListView(),
-                      const SizedBox(height: 32),
-                      const Text(
-                        "Select material",
-                        style: TextStyle(
-                          fontSize: 19,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      const ItemsListView(),
-                      const SizedBox(height: 32),
-                      const ProductDescription(),
-                      const SizedBox(height: 32),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              );
+            },
           );
         },
       ),

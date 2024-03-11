@@ -7,9 +7,8 @@ part 'product_details_state.dart';
 
 class ProductDetailsCubit extends Cubit<ProductDetailsState> {
   ProductDetailsCubit(this.homeRepo) : super(ProductDetailsInitial());
-
   final HomeRepo homeRepo;
-  Future<void> fetchSimilarBooks({required int id}) async {
+  Future<void> fetchProdDetails(int id) async {
     emit(ProductDetailsLoading());
     var result = await homeRepo.fetchProductDetails(id: id);
     result.fold((f) {

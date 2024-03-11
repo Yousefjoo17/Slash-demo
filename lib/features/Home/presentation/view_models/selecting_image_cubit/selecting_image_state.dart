@@ -9,3 +9,4 @@ final class SelectingImage extends SelectingImageState {
   final int currIndex;
   SelectingImage({required this.currIndex});
 }
+
