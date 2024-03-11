@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:slash/features/products/presentation/view_models/selecting_image_cubit/selecting_image_cubit.dart';
+import 'package:slash/features/products/presentation/views/widgets/Colors_ListView.dart';
 import 'package:slash/features/products/presentation/views/widgets/ImagesListViewSmall.dart';
 import 'package:slash/features/products/presentation/views/widgets/imagesListViewBig.dart';
 
@@ -33,33 +34,82 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
       ),
       body: BlocBuilder<SelectingImageCubit, SelectingImageState>(
         builder: (context, state) {
-          return CustomScrollView(
-            slivers: [
-              const SliverToBoxAdapter(child: SizedBox(height: 32)),
-              SliverToBoxAdapter(
-                child: ImagesListViewBig(
-                  imagesUrls: imagURLs,
-                  controller: controllerBig,
+          return Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: CustomScrollView(
+              slivers: [
+                const SliverToBoxAdapter(child: SizedBox(height: 32)),
+                SliverToBoxAdapter(
+                  child: ImagesListViewBig(
+                    imagesUrls: imagURLs,
+                    controller: controllerBig,
+                  ),
                 ),
-              ),
-              const SliverToBoxAdapter(child: SizedBox(height: 30)),
-              SliverToBoxAdapter(
-                child: Row(
-                  children: [
-                    const Spacer(flex: 1),
-                    SizedBox(
-                      height: 60,
-                      width: MediaQuery.of(context).size.width / 1.3,
-                      child: ImagesListViewSmall(
-                        imagesUrls: imagURLs,
-                        controllerBig: controllerBig,
+                const SliverToBoxAdapter(child: SizedBox(height: 30)),
+                SliverToBoxAdapter(
+                  child: Row(
+                    children: [
+                      const Spacer(flex: 1),
+                      SizedBox(
+                        height: 60,
+                        width: MediaQuery.of(context).size.width / 1.3,
+                        child: ImagesListViewSmall(
+                          imagesUrls: imagURLs,
+                          controllerBig: controllerBig,
+                        ),
                       ),
-                    ),
-                    const Spacer(flex: 1),
-                  ],
+                      const Spacer(flex: 1),
+                    ],
+                  ),
                 ),
-              )
-            ],
+                SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Column(
+                            children: [
+                              SizedBox(height: 12),
+                              Text(
+                                "Cargo pants",
+                                style: TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 12),
+                              Text(
+                                "EGP 550",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                              SizedBox(height: 32),
+                              Text(
+                                "Select Color",
+                                style: TextStyle(
+                                  fontSize: 19,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Spacer(),
+                          Image.network(
+                            "https://firebasestorage.googleapis.com/v0/b/slash-d7546.appspot.com/o/images%2Fbrands%2F1695386914229FB_IMG_1693330052710.jpg?alt=media&token=501cb71f-ed98-4348-b2e8-41c63e272e32",
+                            width: 60,
+                            height: 60,
+                            fit: BoxFit.cover,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 32),
+                      const ColorListView()
+                    ],
+                  ),
+                ),
+              ],
+            ),
           );
         },
       ),
