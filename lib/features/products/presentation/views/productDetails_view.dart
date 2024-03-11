@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:slash/features/products/presentation/view_models/selecting_image_cubit/selecting_image_cubit.dart';
 import 'package:slash/features/products/presentation/views/widgets/Colors_ListView.dart';
 import 'package:slash/features/products/presentation/views/widgets/ImagesListViewSmall.dart';
+import 'package:slash/features/products/presentation/views/widgets/Items_listView.dart';
 import 'package:slash/features/products/presentation/views/widgets/imagesListViewBig.dart';
 
 class ProductDetailsView extends StatefulWidget {
@@ -70,7 +71,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                         children: [
                           const Column(
                             children: [
-                              SizedBox(height: 12),
+                              SizedBox(height: 32),
                               Text(
                                 "Cargo pants",
                                 style: TextStyle(
@@ -85,7 +86,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                   fontSize: 20,
                                 ),
                               ),
-                              SizedBox(height: 32),
+                              SizedBox(height: 48),
                               Text(
                                 "Select Color",
                                 style: TextStyle(
@@ -103,8 +104,28 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                           ),
                         ],
                       ),
+                      const SizedBox(height: 16),
+                      const ColorListView(),
                       const SizedBox(height: 32),
-                      const ColorListView()
+                      const Text(
+                        "Select size",
+                        style: TextStyle(
+                          fontSize: 19,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      const ItemsListView(),
+                      const SizedBox(height: 32),
+                      const Text(
+                        "Select material",
+                        style: TextStyle(
+                          fontSize: 19,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      const ItemsListView(),
+                      const SizedBox(height: 32),
+                      //
                     ],
                   ),
                 ),
