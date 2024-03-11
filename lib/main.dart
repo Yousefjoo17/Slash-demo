@@ -4,6 +4,7 @@ import 'package:slash/core/utils/app_router.dart';
 void main() {
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
