@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:slash/features/products/presentation/views/widgets/customProductCard.dart';
+import 'package:slash/features/Home/presentation/views/widgets/customProductCard.dart';
 
 class AllProductsView extends StatelessWidget {
   const AllProductsView({super.key});

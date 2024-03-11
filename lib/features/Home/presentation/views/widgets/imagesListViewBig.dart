@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:slash/features/products/presentation/view_models/selecting_image_cubit/selecting_image_cubit.dart';
+import 'package:slash/features/Home/presentation/view_models/selecting_image_cubit/selecting_image_cubit.dart';
 
 class ImagesListViewBig extends StatelessWidget {
   const ImagesListViewBig({

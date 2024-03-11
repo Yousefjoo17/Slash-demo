@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:slash/core/utils/app_router.dart';
 import 'package:slash/core/utils/service_locator.dart';
-import 'package:slash/features/products/data/repos/Home_repo_imp.dart';
-import 'package:slash/features/products/presentation/view_models/All_products_cubit/all_products_cubit.dart';
+import 'package:slash/features/Home/data/repos/Home_repo_imp.dart';
+import 'package:slash/features/Home/presentation/view_models/All_products_cubit/all_products_cubit.dart';
 
 void main() {
   runApp(const MyApp());

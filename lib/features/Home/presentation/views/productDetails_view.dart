@@ -1,12 +1,12 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:slash/features/products/presentation/view_models/selecting_image_cubit/selecting_image_cubit.dart';
-import 'package:slash/features/products/presentation/views/widgets/Colors_ListView.dart';
-import 'package:slash/features/products/presentation/views/widgets/ImagesListViewSmall.dart';
-import 'package:slash/features/products/presentation/views/widgets/Items_listView.dart';
-import 'package:slash/features/products/presentation/views/widgets/ProductDescription.dart';
-import 'package:slash/features/products/presentation/views/widgets/imagesListViewBig.dart';
+import 'package:slash/features/Home/presentation/view_models/selecting_image_cubit/selecting_image_cubit.dart';
+import 'package:slash/features/Home/presentation/views/widgets/Colors_ListView.dart';
+import 'package:slash/features/Home/presentation/views/widgets/ImagesListViewSmall.dart';
+import 'package:slash/features/Home/presentation/views/widgets/Items_listView.dart';
+import 'package:slash/features/Home/presentation/views/widgets/ProductDescription.dart';
+import 'package:slash/features/Home/presentation/views/widgets/imagesListViewBig.dart';
 
 class ProductDetailsView extends StatefulWidget {
   const ProductDetailsView({super.key});
