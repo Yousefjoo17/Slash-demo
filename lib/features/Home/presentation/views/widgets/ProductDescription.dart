@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProductDescription extends StatelessWidget {
-  const ProductDescription({super.key});
+  const ProductDescription({super.key, required this.desc});
+  final String desc;
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +15,13 @@ class ProductDescription extends StatelessWidget {
           context: context,
           builder: (context) {
             return SizedBox(
-              height: MediaQuery.of(context).size.height * 0.2,
-              child: const Column(
+              height: MediaQuery.of(context).size.height * 0.5,
+              child: Column(
                 children: [
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Text(
-                    "this is a description",
-                    style: TextStyle(fontSize: 20),
+                    desc,
+                    style: const TextStyle(fontSize: 20),
                   ),
                 ],
               ),

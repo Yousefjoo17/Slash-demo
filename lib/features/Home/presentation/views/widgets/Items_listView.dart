@@ -13,12 +13,15 @@ class Item extends StatelessWidget {
             height: 60,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: Color.fromARGB(255, 67, 199, 71),
+              color: const Color.fromARGB(255, 67, 199, 71),
             ),
             child: Center(
               child: Text(
                 text,
-                style: const TextStyle(fontSize: 18),
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
           )
@@ -40,8 +43,9 @@ class Item extends StatelessWidget {
 }
 
 class ItemsListView extends StatefulWidget {
-  const ItemsListView({super.key});
+  const ItemsListView({super.key, required this.array});
 
+  final List<dynamic>? array;
   @override
   State<ItemsListView> createState() => _ColorListViewState();
 }
@@ -55,19 +59,18 @@ class _ColorListViewState extends State<ItemsListView> {
       height: 32 * 2,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: 3,
+        itemCount: widget.array!.length,
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 3),
             child: GestureDetector(
               onTap: () {
                 currIndex = index;
-                //BlocProvider.of<AddNoteCubit>(context).color =KcolorsList[index];
                 setState(() {});
               },
               child: Item(
                 isActive: currIndex == index,
-                text: "X large",
+                text: widget.array![index].toString(),
               ),
             ),
           );

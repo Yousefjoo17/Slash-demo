@@ -19,7 +19,7 @@ class ProductDetailsView extends StatefulWidget {
 
 class _ProductDetailsViewState extends State<ProductDetailsView> {
   final CarouselController controllerBig = CarouselController();
-  int currImg = 0;
+  int curr = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,8 +44,8 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                       const SliverToBoxAdapter(child: SizedBox(height: 32)),
                       SliverToBoxAdapter(
                         child: ImagesListViewBig(
-                          imagesUrls: state.product.variations![currImg]
-                              .productVarientImages!
+                          imagesUrls: state
+                              .product.variations![curr].productVarientImages!
                               .map<String>((image) => image.imagePath as String)
                               .toList(),
                           controller: controllerBig,
@@ -60,7 +60,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                               height: 60,
                               width: MediaQuery.of(context).size.width / 1.3,
                               child: ImagesListViewSmall(
-                                imagesUrls: state.product.variations![currImg]
+                                imagesUrls: state.product.variations![curr]
                                     .productVarientImages!
                                     .map<String>(
                                         (image) => image.imagePath as String)
@@ -90,7 +90,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                     ),
                                     const SizedBox(height: 12),
                                     Text(
-                                      "EGP ${state.product.variations![currImg].price}",
+                                      "EGP ${state.product.variations![curr].price}",
                                       style: const TextStyle(
                                         fontSize: 20,
                                       ),
@@ -107,14 +107,20 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                                 const Spacer(),
                                 Image.network(
                                   state.product.brandImage!,
-                                  width: 70,
-                                  height: 70,
+                                  width: 50,
+                                  height: 50,
                                   fit: BoxFit.fill,
                                 ),
                               ],
                             ),
                             const SizedBox(height: 16),
-                            const ColorListView(),
+                            ColorListView(
+                              colors: state.product.variations![curr]
+                                  .productVarientImages!
+                                  .map<String>(
+                                      (image) => image.imagePath as String)
+                                  .toList(),
+                            ),
                             const SizedBox(height: 32),
                             const Text(
                               "Select size",
@@ -123,7 +129,13 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                               ),
                             ),
                             const SizedBox(height: 16),
-                            const ItemsListView(),
+                            ItemsListView(
+                                array: state.product.avaiableProperties
+                                    ?.where((property) =>
+                                        property.property == "Size")
+                                    .expand((property) => property.values ?? [])
+                                    .map((value) => value?.value ?? "")
+                                    .toList()),
                             const SizedBox(height: 32),
                             const Text(
                               "Select material",
@@ -132,9 +144,16 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                               ),
                             ),
                             const SizedBox(height: 16),
-                            const ItemsListView(),
+                            ItemsListView(
+                                array: state.product.avaiableProperties
+                                    ?.where((property) =>
+                                        property.property == "Materials")
+                                    .expand((property) => property.values ?? [])
+                                    .map((value) => value?.value ?? "")
+                                    .toList()),
                             const SizedBox(height: 32),
-                            const ProductDescription(),
+                            ProductDescription(
+                                desc: state.product.description!),
                             const SizedBox(height: 32),
                           ],
                         ),
