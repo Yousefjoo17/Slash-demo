@@ -7,7 +7,7 @@ part 'all_products_state.dart';
 
 class AllProductsCubit extends Cubit<AllProductsState> {
   AllProductsCubit(this.homeRepo) : super(AllProductsInitial());
-  
+
   final HomeRepo homeRepo;
   Future<void> featchAllProducts() async {
     emit(AllProductsLoading());
