@@ -34,7 +34,6 @@ class HomeRepoImpl implements HomeRepo {
       {required int id}) async {
     try {
       var data = await apiService.get(id: id);
-      print(data);
       ProductDetailsModal productDetailsModal =
           ProductDetailsModal.fromJson(data["data"]);
       return right(productDetailsModal);

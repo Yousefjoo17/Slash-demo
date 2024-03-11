@@ -23,7 +23,7 @@ class ImagesListViewBig extends StatelessWidget {
                 borderRadius: BorderRadius.circular(32),
                 child: Image.network(
                   item,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.none,
                   width: 1000,
                 ),
               ),
