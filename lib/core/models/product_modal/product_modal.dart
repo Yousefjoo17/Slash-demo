@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-
 import 'brands.dart';
 import 'product_variation.dart';
 import 'sub_categories.dart';

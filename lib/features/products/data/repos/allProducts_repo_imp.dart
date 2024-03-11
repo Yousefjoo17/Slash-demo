@@ -15,7 +15,7 @@ class HomeRepoImpl implements HomeRepo {
       var data = await apiService.get() as List;
       List<ProductModal> products = [];
       for (var item in data) {
-        // books.add(BookModel.fromJson(item));
+       products.add(item.fromJson(item));
       }
       return right(products);
     } catch (e) {
@@ -30,12 +30,12 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, ProductModal>> fetchProductDetails(
       {required int id}) async {
     try {
-      var data = await apiService.get(id: id);
+      var data = await apiService.get(id: id) as List;
 
       List<ProductModal> products = [];
 
-      for (var item in data["items"]) {
-        // products.add(BookModel.fromJson(item));
+      for (var item in data) {
+         products.add(item.fromJson(item));
       }
 
       return right(products[0]);
