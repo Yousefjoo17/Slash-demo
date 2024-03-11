@@ -2,7 +2,9 @@ import 'package:dio/dio.dart';
 
 class ApiService {
   final String _baseUrl = "https://slash-backend.onrender.com/product/";
-  final Dio _dio = Dio();
+  final Dio _dio;
+
+  ApiService(Dio dio) : _dio = dio;
 
   Future<Map<String, dynamic>> get({int? id}) async {
     if (id == null) {
