@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  final String _baseUrl = "https://slash-backend.onrender.com/product/";
+  final String _baseUrl = "https://slash-backend.onrender.com/product/?limit=20&page=1";
   final Dio _dio;
 
   ApiService(Dio dio) : _dio = dio;

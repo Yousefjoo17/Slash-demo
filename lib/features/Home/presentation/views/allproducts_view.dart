@@ -33,7 +33,9 @@ class AllProductsView extends StatelessWidget {
                 if (state is AllProductsSuccess) {
                   return SliverGrid(
                     delegate: SliverChildBuilderDelegate((context, index) {
-                      return const CustomProductCard();
+                      return CustomProductCard(
+                        product: state.products[index],
+                      );
                     }, childCount: state.products.length),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -44,9 +46,11 @@ class AllProductsView extends StatelessWidget {
                     ),
                   );
                 } else if (state is AllProductsFailure) {
-                  return CustomErrorWidget(errMessage: state.errMessage);
+                  return SliverToBoxAdapter(
+                      child: CustomErrorWidget(errMessage: state.errMessage));
                 } else {
-                  return const CustomloadingIndicatorWidget();
+                  return const SliverToBoxAdapter(
+                      child: Center(child: CustomloadingIndicatorWidget()));
                 }
               },
             )

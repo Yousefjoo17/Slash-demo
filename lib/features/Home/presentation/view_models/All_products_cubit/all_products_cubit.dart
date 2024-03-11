@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:slash/core/models/product_modal/product_modal.dart';
+import 'package:slash/features/Home/data/models/product_modal/product_modal.dart';
 import 'package:slash/features/Home/data/repos/Home_repo.dart';
 
 part 'all_products_state.dart';

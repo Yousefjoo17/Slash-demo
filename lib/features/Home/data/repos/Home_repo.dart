@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:slash/core/errors/failure.dart';
-import 'package:slash/core/models/product_modal/product_modal.dart';
+import 'package:slash/features/Home/data/models/product_modal/product_modal.dart';
 
 abstract class HomeRepo {
   Future<Either<Failure, List<ProductModal>>> fetchAllProducts();

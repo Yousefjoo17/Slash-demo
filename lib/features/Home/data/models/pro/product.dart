@@ -1,6 +1,6 @@
 
-import 'package:slash/core/models/pro/Product_Property.dart';
-import 'package:slash/core/models/product_modal/product_variation.dart';
+import 'package:slash/features/Home/data/models/pro/Product_Property.dart';
+import 'package:slash/features/Home/data/models/product_modal/product_variation.dart';
 
 class Product {
   final int id;

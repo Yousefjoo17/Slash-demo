@@ -6,6 +6,7 @@ import 'package:slash/features/Home/data/repos/Home_repo_imp.dart';
 import 'package:slash/features/Home/presentation/view_models/All_products_cubit/all_products_cubit.dart';
 
 void main() {
+  setupServiceLocator();
   runApp(const MyApp());
 }
 
