@@ -5,6 +5,7 @@ import 'package:slash/features/products/presentation/view_models/selecting_image
 import 'package:slash/features/products/presentation/views/widgets/Colors_ListView.dart';
 import 'package:slash/features/products/presentation/views/widgets/ImagesListViewSmall.dart';
 import 'package:slash/features/products/presentation/views/widgets/Items_listView.dart';
+import 'package:slash/features/products/presentation/views/widgets/ProductDescription.dart';
 import 'package:slash/features/products/presentation/views/widgets/imagesListViewBig.dart';
 
 class ProductDetailsView extends StatefulWidget {
@@ -27,6 +28,7 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: const Center(
           child: Text(
             "Product details       ",
@@ -125,7 +127,8 @@ class _ProductDetailsViewState extends State<ProductDetailsView> {
                       const SizedBox(height: 16),
                       const ItemsListView(),
                       const SizedBox(height: 32),
-                      //
+                      const ProductDescription(),
+                      const SizedBox(height: 32),
                     ],
                   ),
                 ),

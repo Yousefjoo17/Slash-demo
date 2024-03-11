@@ -13,7 +13,7 @@ class Item extends StatelessWidget {
             height: 60,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: Colors.green,
+              color: Color.fromARGB(255, 67, 199, 71),
             ),
             child: Center(
               child: Text(
