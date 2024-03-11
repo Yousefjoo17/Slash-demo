@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:slash/core/errors/failure.dart';
 import 'package:slash/core/models/product_modal/product_modal.dart';
 import 'package:slash/core/utils/api_service.dart';
-import 'package:slash/features/products/data/repos/allProducts_repo.dart';
+import 'package:slash/features/products/data/repos/Home_repo.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final ApiService apiService;
